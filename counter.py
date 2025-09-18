@@ -1,13 +1,17 @@
 import boto3
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
 
 # ---- Configuration via ENV ----
 S3_ENDPOINT = os.getenv("S3_ENDPOINT", "https://your-s3-endpoint")
 ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key")
 SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "your-secret-key")
 BUCKET_NAME = os.getenv("S3_BUCKET", "your-bucket")
-MAX_WORKERS = int(os.getenv("MAX_WORKERS", "10"))  # default = 10 threads
+MAX_WORKERS = int(os.getenv("MAX_WORKERS", "2"))
 
 # ---- Connect to S3 ----
 s3 = boto3.client(
